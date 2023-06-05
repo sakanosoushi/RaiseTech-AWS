@@ -49,7 +49,7 @@ cp config/database.yml.sample config/database.yml
 # 念の為確認
 mysql -u root -p
 ```
-![01.MySQLconfigの設定](AWS_localrepo/image/AWS-WebAP-00.png)
+![01.MySQLconfigの設定](image/AWS-WebAP-00.png)
 
 1. yarn のセットアップ
 ``` ruby
