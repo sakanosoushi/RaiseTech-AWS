@@ -10,19 +10,19 @@
 <div class="custom-border">
 
 ## 目次
-[1. サンプルアプリケーションの起動](#janp01)
+### [1. サンプルアプリケーションの起動](#janp01)
 
-[2. APサーバについて](#janp02)
+### [2. APサーバについて](#janp02)
 
-[3. DBサーバについて](#janp03)
+### [3. DBサーバについて](#janp03)
 
-[4. Railsの構成管理ツールについて](#janp04)
+### [4. Railsの構成管理ツールについて](#janp04)
 
-[5. 学んだこと](#janp05)
+### [5. 学んだこと](#janp05)
 
 </div>
 
-<div style="height: 40px;"></div>
+<br>
 
 ## <a id="janp01"></a>サンプルアプリケーションの起動
 1. アプリケーションクローン
@@ -104,7 +104,7 @@ sudo chmod 700 bin/cloud9_dev
 bin/cloud9_dev
 ```
 
-<div style="height: 20px;"></div>
+<br>
 
 ## <a id="janp02"></a>APサーバについて
 - フロントエンドからのリクエストに対して、DBサーバに動的にリクエストしてレスポンスを返すサーバ
@@ -118,7 +118,7 @@ bin/cloud9.dev
 # 停止はコマンド(CTRL + C)
 ```
 
-<div style="height: 20px;"></div>
+<br>
 
 ## <a id="janp03"></a>DBサーバについて
 - APサーバからのリクエストに応じてDBへの読み書きを行い、必要なデータをAPサーバに返すサーバ
@@ -134,13 +134,13 @@ sudo service mysql stop
 sudo service mysql restart
 ```
 
-<div style="height: 20px;"></div>
+<br>
 
 ## <a id="janp04"></a>Railsの構成管理ツール
 - 「bundler」を利用してシステム構成を管理することができる。Ruby環境上で動作するWebアプリケーションフレームワーク
 - バージョンは7.0.4
 
-<div style="height: 20px;"></div>
+<br>
 
 ## <a id="janp05"></a>今回学んだこと
 - Rubyアプリケーションをクローンし、cloud9上で起動する方法
