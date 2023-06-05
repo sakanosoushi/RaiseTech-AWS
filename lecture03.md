@@ -1,25 +1,25 @@
 # 第3回課題
 ## サンプルアプリケーションの起動
 1. アプリケーションクローン
-```ruby:Clone
+``` ruby
 # バージョン確認
 git —version
 # 以下を貼り付け
 git clone https://github.com/yuta-ushijima/raisetech-live8-sample-app.git
 ```
 1. アプリケーションフォルダに移動
-```ruby
+``` ruby
 cd raisetech-live8-sample-app/
 ```
 1. Ruby Version Managerのアップデート
-```ruby:Update rvm
+``` ruby
 # 最新のrvmを取得
 rvm get master
 # 一応バージョンを指定してインストール
 rvm install 3.1.2
 ```
 1. MySQLセットアップ
-```ruby:MySQL setup
+``` ruby
 # 不要Dockerイメージを削除して空き確保
 docker system prune -a
 # AWSアカウントのサービス→EC2→ボリューム→指定のボリュームを選択→変更→サイズを10から16へ
@@ -29,14 +29,14 @@ https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/main/aws
 ```
 Active が [active(running)]であることを確認
 1. mySQLの初期パスワード設定
-``` ruby:PWreset
+``` ruby
 # 初期パスワードの確認
 sudo cat /var/log/mysqld.log | grep "temporary password" | awk '{print $13}'
 # ログイン確認して↑で表示されたパスワードを入力
 mysql -u root -p
 ```
 - 初期パスワードのままだと接続できないことがあるようなので…
-``` ruby:
+``` ruby
 # YOUR PASSWORDに設定するパスワードを入力
 ALTER USER 'root'@'localhost' IDENTIFIED BY ‘YOUR PASSWORD;
 FLUSH PRIVILEGES;
@@ -44,14 +44,15 @@ FLUSH PRIVILEGES;
 - icloud9画面左からconfig/development.rbを開いてMySQLのデフォルトパスワードを設定
 - socketのパスが違うのでmysql.sockのパスを調べて修正(tmp から var/lib)(2箇所)
 - ファイル名を変更して反映
-``` ruby:cd
+``` ruby
 cp config/database.yml.sample config/database.yml
 # 念の為確認
 mysql -u root -p
 ```
-![01.MySQLconfigの設定](image/AWS-Web AP-00.png)
+![01.MySQLconfigの設定](AWS_localrepo/image/AWS-WebAP-00.png)
+
 1. yarn のセットアップ
-``` ruby:
+``` ruby
 npm install --global yarn
 ```
 1. 必要なライブラリを自動インストール
@@ -69,7 +70,9 @@ bin/cloud9_dev
 ```
 - 画面上部のPrebiewで表示されたものをコピー
 - config/development.rb を開き、最下段に表示されたコードを追加
-![02.developmentの設定](image/AWS-Web AP-01.png)
+
+![02.developmentの設定](image/AWS-WebAP-01.png)
+
 1. 管理者のみbin/cloud9_devの権限を持たせて実行
 ``` ruby
 sudo chmod 700 bin/cloud9_dev
@@ -80,16 +83,26 @@ bin/cloud9_dev
 - フロントエンドからのリクエストに対して、DBサーバに動的にリクエストしてレスポンスを返すサーバ
 - サーバ名は「puma」、バージョンは5.6.5
 - APサーバを終了させた後、ウェブを再読み込みすると以下の表示となり、アクセスすることができなくなる。
-![03.APサーバ停止した状態でのリクエスト結果](image/AWS-Web AP-02.png)
-1. bin/cloud9.dev (APサーバ起動)
-2. 停止はコマンド(CTRL + C)
+![03.APサーバ停止した状態でのリクエスト結果](image/AWS-WebAP-02.png)
+
+``` ruby
+# APサーバ起動
+bin/cloud9.dev
+# 停止はコマンド(CTRL + C)
+```
 ## DBサーバについて
 - APサーバからのリクエストに応じてDBへの読み書きを行い、必要なデータをAPサーバに返すサーバ
 - サーバー名は「MySQL」、バージョンは8.0.33
 - APと同じくシステム終了後、再読み込みするとアクセスできなくなる。
-![03.DBサーバ停止した状態でのリクエスト結果](image/AWS-Web AP-03.png)
-1. sudo service mysql stop
-2. sudo service mysql restart
+
+![03.DBサーバ停止した状態でのリクエスト結果](image/AWS-WebAP-03.png)
+
+``` ruby
+# mysql 停止
+sudo service mysql stop
+# mysql 再起動
+sudo service mysql restart
+```
 ## Railsの構成管理ツール
 - 「bundler」を利用してシステム構成を管理することができる。Ruby環境上で動作するWebアプリケーションフレームワーク
 - バージョンは7.0.4
