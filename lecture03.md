@@ -1,14 +1,5 @@
 # 第3回課題
 
-<style>
-.custom-border {
-    border: 1px solid #000;
-    padding: 10px;
-}
-</style>
-
-<div class="custom-border">
-
 ## 目次
 ### [1. サンプルアプリケーションの起動](#janp01)
 
@@ -19,8 +10,6 @@
 ### [4. Railsの構成管理ツールについて](#janp04)
 
 ### [5. 学んだこと](#janp05)
-
-</div>
 
 <br>
 
