@@ -21,18 +21,18 @@ git —version
 # 以下を貼り付け
 git clone https://github.com/yuta-ushijima/raisetech-live8-sample-app.git
 ```
-1. アプリケーションフォルダに移動
+2. アプリケーションフォルダに移動
 ``` ruby
 cd raisetech-live8-sample-app/
 ```
-1. Ruby Version Managerのアップデート
+3. Ruby Version Managerのアップデート
 ``` ruby
 # 最新のrvmを取得
 rvm get master
 # 一応バージョンを指定してインストール
 rvm install 3.1.2
 ```
-1. MySQLセットアップ
+4. MySQLセットアップ
 ``` ruby
 # 不要Dockerイメージを削除して空き確保
 docker system prune -a
@@ -42,7 +42,7 @@ curl -fsSL
 https://raw.githubusercontent.com/MasatoshiMizumoto/raisetech_documents/main/aws/scripts/mysql_amazon_linux_2.sh | sh
 ```
 Active が [active(running)]であることを確認
-1. mySQLの初期パスワード設定
+5. mySQLの初期パスワード設定
 ``` ruby
 # 初期パスワードの確認
 sudo cat /var/log/mysqld.log | grep "temporary password" | awk '{print $13}'
@@ -65,19 +65,19 @@ mysql -u root -p
 ```
 ![01.MySQLconfigの設定](image/AWS-WebAP-00.png)
 
-1. yarn のセットアップ
+6. yarn のセットアップ
 ``` ruby
 npm install --global yarn
 ```
-1. 必要なライブラリを自動インストール
+7. 必要なライブラリを自動インストール
 ``` ruby:setup
 bin/setup
 ```
-1. サーバーのマイグレーション
+8. サーバーのマイグレーション
 ``` ruby
 bin/rails db:migrate
 ```
-1. ブロックされないように設定
+9. ブロックされないように設定
 ``` ruby
 # 一度アプリケーションを起動
 bin/cloud9_dev
@@ -87,19 +87,22 @@ bin/cloud9_dev
 
 ![02.developmentの設定](image/AWS-WebAP-01.png)
 
-1. 管理者のみbin/cloud9_devの権限を持たせて実行
+10. 管理者のみbin/cloud9_devの権限を持たせて実行
 ``` ruby
 sudo chmod 700 bin/cloud9_dev
 bin/cloud9_dev
 ```
+11. 正しく実行できるかウェブ上で確認
+- ウィンドウ中央上部のプレピュー→Browserで新規ウィンドウで表示
 
+![03.アプリケーションの起動確認](image/AWS-WebAP-02.png)
 <br>
 
 ## <a id="janp02"></a>APサーバについて
 - フロントエンドからのリクエストに対して、DBサーバに動的にリクエストしてレスポンスを返すサーバ
 - サーバ名は「puma」、バージョンは5.6.5
 - APサーバを終了させた後、ウェブを再読み込みすると以下の表示となり、アクセスすることができなくなる。
-![03.APサーバ停止した状態でのリクエスト結果](image/AWS-WebAP-02.png)
+![03.APサーバ停止した状態でのリクエスト結果](image/AWS-WebAP-03.png)
 
 ``` ruby
 # APサーバ起動
@@ -114,7 +117,7 @@ bin/cloud9.dev
 - サーバー名は「MySQL」、バージョンは8.0.33
 - APと同じくシステム終了後、再読み込みするとアクセスできなくなる。
 
-![03.DBサーバ停止した状態でのリクエスト結果](image/AWS-WebAP-03.png)
+![03.DBサーバ停止した状態でのリクエスト結果](image/AWS-WebAP-04.png)
 
 ``` ruby
 # mysql 停止
